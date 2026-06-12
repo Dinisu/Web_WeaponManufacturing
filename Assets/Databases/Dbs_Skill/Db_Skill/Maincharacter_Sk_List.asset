@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 278ff4fcc2a6edb46b9287e734719129, type: 3}
+  m_Name: Maincharacter_Sk_List
+  m_EditorClassIdentifier: 
+  itemList:
+  - {fileID: 11400000, guid: 4acd8ce0aec8f14449fa847dd69b1d4a, type: 2}
+  - {fileID: 11400000, guid: 41198ebcef794644d9b5c345688e457c, type: 2}
+  - {fileID: 11400000, guid: ed905cc022a8f4447a5c816c1015faf7, type: 2}
+  - {fileID: 11400000, guid: dcea28cb8068e4a4b8f13a9e368ae2fc, type: 2}
+  - {fileID: 11400000, guid: 1d2b610a94d0d3342b727b2e8e923c05, type: 2}
+  - {fileID: 11400000, guid: 930d3225b252b38439e025389ce521d6, type: 2}
+  - {fileID: 11400000, guid: 7a56799018d014e499e57f079587f711, type: 2}
