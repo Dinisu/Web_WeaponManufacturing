@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a266cafce9b3b348a073d8cda3d1916, type: 3}
   m_Name: Enemy List
   m_EditorClassIdentifier: Assembly-CSharp::App.BaseSystem.DataStores.ScriptableObjects.Status.Db_Ch_StatusDataBase
-  itemList: []
+  itemList:
+  - {fileID: 0}
+  - {fileID: 0}
