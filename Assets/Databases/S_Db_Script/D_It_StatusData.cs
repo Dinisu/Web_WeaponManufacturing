@@ -151,14 +151,8 @@ namespace App.BaseSystem.DataStores.ScriptableObjects.Status
         [SerializeField, Header("値段")]
         private int price;
 
-        [SerializeField, Header("アイコン")]
-        public GameObject Icon;
-
         [SerializeField, Header("データアイコン画像")]
         public Sprite DataIcon;
-
-        [SerializeField, Header("バトルアイコン")]
-        public GameObject B_Icon;
 
         [SerializeField, Header("エフェクト")]
         public GameObject Effect;

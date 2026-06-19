@@ -119,6 +119,81 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &88662797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 88662798}
+  - component: {fileID: 88662800}
+  - component: {fileID: 88662799}
+  m_Layer: 5
+  m_Name: Blacksmith Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &88662798
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88662797}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1552497099}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 195}
+  m_SizeDelta: {x: 1920, y: 1080}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &88662799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88662797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &88662800
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88662797}
+  m_CullTransparentMesh: 1
 --- !u!1 &233177454
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,7 +723,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuManager
   Banner: {fileID: 0}
-  Battle_Background: {fileID: 0}
+  backgrounds: []
+  data_UI: {fileID: 0}
 --- !u!224 &470259684
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1494,6 +1570,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 854956918}
   m_CullTransparentMesh: 1
+--- !u!1001 &914657325
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 847184501058105000, guid: 2ac391b8429450e418bf0b9bca687069, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 683.4544
+      objectReference: {fileID: 0}
+    - target: {fileID: 847184501058105000, guid: 2ac391b8429450e418bf0b9bca687069, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 233.84933
+      objectReference: {fileID: 0}
+    - target: {fileID: 847184501058105000, guid: 2ac391b8429450e418bf0b9bca687069, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 847184501058105000, guid: 2ac391b8429450e418bf0b9bca687069, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 847184501058105000, guid: 2ac391b8429450e418bf0b9bca687069, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 847184501058105000, guid: 2ac391b8429450e418bf0b9bca687069, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 847184501058105000, guid: 2ac391b8429450e418bf0b9bca687069, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 847184501058105000, guid: 2ac391b8429450e418bf0b9bca687069, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 847184501058105000, guid: 2ac391b8429450e418bf0b9bca687069, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 847184501058105000, guid: 2ac391b8429450e418bf0b9bca687069, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3473860052968206383, guid: 2ac391b8429450e418bf0b9bca687069, type: 3}
+      propertyPath: m_Name
+      value: GameManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2ac391b8429450e418bf0b9bca687069, type: 3}
 --- !u!1 &971907968
 GameObject:
   m_ObjectHideFlags: 0
@@ -1724,7 +1857,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuManager
   Banner: {fileID: 1088459081}
-  Battle_Background: {fileID: 0}
+  backgrounds:
+  - type: 0
+    background: {fileID: 1184496319}
+    displayFields: {fileID: 0}
+  - type: 1
+    background: {fileID: 88662797}
+    displayFields: {fileID: 0}
+  data_UI: {fileID: 0}
 --- !u!1 &1184496319
 GameObject:
   m_ObjectHideFlags: 0
@@ -1742,7 +1882,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1184496320
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2033,6 +2173,7 @@ RectTransform:
   - {fileID: 470259684}
   - {fileID: 1088459082}
   - {fileID: 1184496320}
+  - {fileID: 88662798}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2048,3 +2189,4 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 1552497099}
   - {fileID: 490659084}
+  - {fileID: 914657325}
