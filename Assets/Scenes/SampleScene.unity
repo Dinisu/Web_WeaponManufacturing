@@ -1861,9 +1861,11 @@ MonoBehaviour:
   - type: 0
     background: {fileID: 1184496319}
     displayFields: {fileID: 0}
+    itemList: []
   - type: 1
     background: {fileID: 88662797}
     displayFields: {fileID: 0}
+    itemList: []
   data_UI: {fileID: 0}
 --- !u!1 &1184496319
 GameObject:

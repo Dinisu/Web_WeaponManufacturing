@@ -143,12 +143,11 @@ namespace App.BaseSystem.DataStores.ScriptableObjects.Status
             None
         }
 
+        [SerializeField, Header("データアイコン画像")]
+        public Sprite DataIcon;
+
         [SerializeField, Header("外見")]
         public GameObject Character;
-        public GameObject B_Character;
         public GameObject B_Icon;
-        public GameObject B_Icon_Ch;
-        public GameObject Icon_Character1;
-        public GameObject Icon_Character2;
     }
 }

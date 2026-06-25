@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b68dd9a2d0692db4ea486a429fd5f1af, type: 3}
-  m_Name: Player_Item
+  m_Name: Possessed_Item
   m_EditorClassIdentifier: 
   itemList:
   - {fileID: 11400000, guid: 463d0aa0f1368a145bf8ee386c548e5b, type: 2}

@@ -1,5 +1,7 @@
+using App.BaseSystem.DataStores.ScriptableObjects.Status;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -7,15 +9,30 @@ public class MenuManager : MonoBehaviour
     private GameObject Banner;
     [SerializeField, Header("表示背景")]
     private List<BackgroundData> backgrounds;
-    [SerializeField] private GameObject data_UI;
+    [SerializeField, Header("アイテム表示プレハブ")] 
+    private GameObject data_UI;
 
+    private Db_It_StatusDataBase db_PlayerItem;//所持アイテムデータベース
+    private Db_Eq_StatusDataBase db_PossessedEq;//所持装備データベース
+    private Dss_It_StatusDataStores dss_It_StatusDataStores;
+    private Dss_Eq_StatusDataStores dss_Eq_StatusDataStores;
+
+    private void Awake()
+    {
+        dss_It_StatusDataStores = FindAnyObjectByType<Dss_It_StatusDataStores>();
+        dss_Eq_StatusDataStores = FindAnyObjectByType<Dss_Eq_StatusDataStores>();
+
+        // FindDatabaseWithName を使用して Player_Item データベースを取得
+        db_PlayerItem = dss_It_StatusDataStores.FindDatabaseWithName("Possessed_Item");
+    }
     /// <summary>
     /// 表示背景の種類
     /// </summary>
     public enum BackgroundType
     {
         Battle,
-        Blacksmith
+        Blacksmith,
+        Enchantment
     }
 
     [System.Serializable]
@@ -24,7 +41,8 @@ public class MenuManager : MonoBehaviour
     {
         public BackgroundType type;       //種類
         public GameObject background;     //背景
-        public GameObject displayFields;  //アイテムなどを表示する場所
+        public Transform displayFields;  //アイテムなどを表示する場所
+        public List<GameObject> itemList = new List<GameObject>(); //displayFieldsに表示しているアイテムリスト
     }
 
     /// <summary>
@@ -37,6 +55,8 @@ public class MenuManager : MonoBehaviour
             if (data.type == BackgroundType.Battle)
             {
                 data.background.SetActive(true);
+
+                UIGeneration(BackgroundType.Battle);
             }
             else
             {
@@ -55,11 +75,117 @@ public class MenuManager : MonoBehaviour
             if (data.type == BackgroundType.Blacksmith)
             {
                 data.background.SetActive(true);
+
+                UIGeneration(BackgroundType.Blacksmith);
             }
             else
             {
                 data.background.SetActive(false);
             }
+        }
+    }
+
+    /// <summary>
+    /// エンチャント画面に移行
+    /// </summary>
+    public void Next_Enchantment()
+    {
+        foreach (var data in backgrounds)
+        {
+            if (data.type == BackgroundType.Enchantment)
+            {
+                data.background.SetActive(true);
+
+                UIGeneration(BackgroundType.Enchantment);
+            }
+            else
+            {
+                data.background.SetActive(false);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 画面に対応する所持品UI生成
+    /// </summary>
+    public void UIGeneration(BackgroundType blacksmith)
+    {
+
+        foreach (var data in backgrounds)
+        {
+            //表示中の画面のUI更新
+            if (data.type == blacksmith)
+            {
+                // 古いUI削除
+                foreach (var item in data.itemList)
+                {
+                    Destroy(item);
+                }
+
+                data.itemList.Clear();
+
+                // 新しいUI生成,生成する所持品の種類分岐
+                switch (data.type)
+                {
+                    case BackgroundType.Battle:
+
+                        break;
+
+                    case BackgroundType.Blacksmith:
+                        GenerateItemUI(data);
+                        break;
+
+                    case BackgroundType.Enchantment:
+                        GenerateEquipmentUI(data);
+                        break;
+                }
+
+                break;
+            }
+        }
+    }
+
+    /// <summary>
+    /// アイテムUI生成
+    /// </summary>
+    private void GenerateItemUI(BackgroundData data)
+    {
+        foreach (var itemData in db_PlayerItem.ItemList)
+        {
+            if (itemData.Number <= 0)
+                continue;
+
+            GameObject uiObj =
+                Instantiate(data_UI, data.displayFields);
+
+            var image = uiObj.GetComponent<Image>();
+
+            if (image != null)
+            {
+                image.sprite = itemData.DataIcon;
+            }
+
+            data.itemList.Add(uiObj);
+        }
+    }
+    /// <summary>
+    /// 装備UI生成
+    /// </summary>
+    private void GenerateEquipmentUI(BackgroundData data)
+    {
+        foreach (var eqData in db_PossessedEq.ItemList)
+        {
+            GameObject uiObj =
+                Instantiate(data_UI, data.displayFields);
+
+            var image = uiObj.GetComponent<Image>();
+
+            if (image != null)
+            {
+                image.sprite = eqData.DataIcon;
+            }
+
+            data.itemList.Add(uiObj);
         }
     }
 }
