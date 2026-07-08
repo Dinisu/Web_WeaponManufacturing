@@ -11,21 +11,7 @@ namespace App.BaseSystem.DataStores.ScriptableObjects.Status
         [TextArea, Header("効果説明")]
         public string EfficacyItemDescription;
 
-        public enum Rarity
-        {
-            // コモン、アンコモン、レア、エピック、レジェンダリー
-            Common,
-            Uncommon,
-            Rare,
-            Epic,
-            Legendary
-        }
-
-        public Rarity SeeRarity
-        {
-            get => rarity;
-            set => rarity = value;
-        }
+        public Rarity SeeRarity => rarity;
         [SerializeField, Header("レア度")]
         private Rarity rarity;
 

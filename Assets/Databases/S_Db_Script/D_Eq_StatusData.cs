@@ -8,22 +8,7 @@ namespace App.BaseSystem.DataStores.ScriptableObjects.Status
     [CreateAssetMenu(menuName = "ScriptableObject/Data/EquipmentStatus")]
     public class D_Eq_StatusData : BaseData
     {
-
-        public enum Rarity
-        {
-            // コモン、アンコモン、レア、エピック、レジェンダリー
-            Common,
-            Uncommon,
-            Rare,
-            Epic,
-            Legendary
-        }
-
-        public Rarity SeeRarity
-        {
-            get => rarity;
-            set => rarity = value;
-        }
+        public Rarity SeeRarity => rarity;
         [SerializeField, Header("レア度")]
         private Rarity rarity;
 
@@ -131,11 +116,11 @@ namespace App.BaseSystem.DataStores.ScriptableObjects.Status
 
 
         [SerializeField, Header("付与スキルリスト")]
-        public Db_Sk_StatusDataBase SkillList;
+        public List<D_Sk_StatusData> SkillList = new List<D_Sk_StatusData>();
 
         [SerializeField, Header("受けているスキルバフ")]
         public List<ActiveBuff<D_Sk_StatusData>> ActiveBuffs = new();//スキルバフのデータ管理
-        //[HideInInspector]
+        
         [SerializeField, Header("受けているアイテムバフ")]
         public List<ActiveBuff<D_It_StatusData>> ActiveBuffs_It = new();//アイテムバフのデータ管理
         public enum Abnormalstatus
