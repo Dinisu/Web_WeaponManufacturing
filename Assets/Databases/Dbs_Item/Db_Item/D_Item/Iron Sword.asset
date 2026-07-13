@@ -16,11 +16,10 @@ MonoBehaviour:
   id: 502
   ItemDescription: "\u4E00\u822C\u7684\u306A\u9244\u306E\u5263"
   EfficacyItemDescription: "\u653B\u6483\u529B:10"
+  rarity: 1
   attribute: 0
-  itemRange: 0
   kinds: 0
   buff_DeBuff_kind: 0
-  abnormalstatus: 0
   Equipment:
     MaxHpup: 0
     MaxMpup: 0
@@ -34,11 +33,9 @@ MonoBehaviour:
   efficacy2: 0
   criticalRate: 0
   duration: 0
-  number: 0
+  number: 1
   price: 0
-  Icon: {fileID: 2077527046347190955, guid: 57b8265f986e90f468490d20f6ddf48a, type: 3}
-  DataIcon: {fileID: 0}
-  B_Icon: {fileID: 0}
+  DataIcon: {fileID: -65725288881123977, guid: ff7a83b3f05541a449c60d6fc92a13c0, type: 3}
   Effect: {fileID: 0}
   SoundEffects: {fileID: 8300000, guid: bfc94e67c5cde6c46a70dc362de4bb24, type: 3}
   Event: {fileID: 0}

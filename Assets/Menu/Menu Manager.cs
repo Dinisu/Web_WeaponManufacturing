@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject Banner;
     [SerializeField, Header("表示背景")]
     private List<BackgroundData> backgrounds;
     [SerializeField, Header("アイテム表示プレハブ")] 
@@ -42,7 +40,7 @@ public class MenuManager : MonoBehaviour
     {
         public BackgroundType type;       //種類
         public GameObject background;     //背景
-        public Transform displayFields;  //アイテムなどを表示する場所
+        public Transform displayFields;  //アイテムなどのUIを表示する場所
         public List<GameObject> itemList = new List<GameObject>(); //displayFieldsに表示しているアイテムリスト
     }
 
@@ -134,10 +132,12 @@ public class MenuManager : MonoBehaviour
 
                     case BackgroundType.Blacksmith:
                         GenerateMaterialItemUI(data);
+
                         break;
 
                     case BackgroundType.Enchantment:
                         GenerateEquipmentUI(data);
+
                         break;
                 }
 
