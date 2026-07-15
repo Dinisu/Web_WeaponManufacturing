@@ -3,6 +3,7 @@ using NUnit.Framework.Interfaces;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class MenuManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class MenuManager : MonoBehaviour
     private Db_Eq_StatusDataBase db_PossessedEq;//所持装備データベース
     private Dss_It_StatusDataStores dss_It_StatusDataStores;
     private Dss_Eq_StatusDataStores dss_Eq_StatusDataStores;
+
+    [SerializeField] private BlacksmithManager blacksmithManager;
 
     private void Awake()
     {
@@ -127,21 +130,50 @@ public class MenuManager : MonoBehaviour
                 switch (data.type)
                 {
                     case BackgroundType.Battle:
+                        SelectMaterialClear();
 
                         break;
 
                     case BackgroundType.Blacksmith:
-                        GenerateMaterialItemUI(data);
+                        SelectMaterialClear();
 
+                        GenerateMaterialItemUI(data);
                         break;
 
                     case BackgroundType.Enchantment:
-                        GenerateEquipmentUI(data);
+                        SelectMaterialClear();
 
+                        GenerateEquipmentUI(data);          
                         break;
                 }
 
                 break;
+            }
+        }
+    }
+
+    /// <summary>
+    /// 選択中の素材アイテムがあれば元に戻す
+    /// </summary>
+    private void SelectMaterialClear()
+    {
+        if (blacksmithManager.Material1 != null)
+        {
+            ItemUI itemUI = blacksmithManager.Material1.GetComponent<ItemUI>();
+
+            if (itemUI != null)
+            {
+                itemUI.CancelItem(itemUI.ItemData, blacksmithManager.Material1);
+            }
+        }
+
+        if (blacksmithManager.Material2 != null)
+        {
+            ItemUI itemUI = blacksmithManager.Material2.GetComponent<ItemUI>();
+
+            if (itemUI != null)
+            {
+                itemUI.CancelItem(itemUI.ItemData, blacksmithManager.Material2);
             }
         }
     }
@@ -162,17 +194,15 @@ public class MenuManager : MonoBehaviour
             //data_UIプレハブを生成して、displayFieldsの子オブジェクトとして配置する
             GameObject uiObj = Instantiate(data_UI, data.displayFields);
 
-            // アイテムの画面を表示する子オブジェクトを取得
+            // アイテムの画像を表示する子オブジェクトを取得
             ItemUI itemUI = uiObj.GetComponent<ItemUI>();
 
-            if (itemUI != null)
+            itemUI.Initialize(itemData, blacksmithManager, itemUI, () =>
             {
-                itemUI.SetIcon(itemData.DataIcon);// UIに画面を入れる
-            }
-            if (itemUI != null)
-            {
-                itemUI.SetItem(itemData.DataIcon, itemData.SeeRarity);// UIのレア度ごとの色設定
-            }
+                itemUI.SelectItem(itemData, data_UI);
+            });
+            itemUI.SetNumber(itemData.Number);
+
 
             data.itemList.Add(uiObj);
         }
@@ -190,14 +220,10 @@ public class MenuManager : MonoBehaviour
             // アイテムの画面を表示する子オブジェクトを取得
             ItemUI itemUI = uiObj.GetComponent<ItemUI>();
 
-            if (itemUI != null)
+            itemUI.Initialize(eqData, blacksmithManager, itemUI, () =>
             {
-                itemUI.SetIcon(eqData.DataIcon);// UIに画面を入れる
-            }
-            if (itemUI != null)
-            {
-                itemUI.SetItem(eqData.DataIcon, eqData.SeeRarity);// UIのレア度ごとの色設定
-            }
+                itemUI.SelectItem(eqData);
+            });
 
             data.itemList.Add(uiObj);
         }

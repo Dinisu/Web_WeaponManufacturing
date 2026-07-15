@@ -1,18 +1,120 @@
 using App.BaseSystem.DataStores.ScriptableObjects.Status;
+using NUnit.Framework.Interfaces;
+using System.Runtime.InteropServices;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class ItemUI : MonoBehaviour
 {
     [SerializeField] private Image itemImage;
     [SerializeField] private Image rarityColor;
+    [SerializeField] private TextMeshProUGUI numberText;
+    [SerializeField] private Button button;
+    private ItemUI sourceItemUI;
+
+    [Header("素材データ")]
+    public D_It_StatusData ItemData;
+
+    private BlacksmithManager blacksmithManager;
+
+
+    /// <summary>
+    /// アイテムUIの初期化処理
+    /// </summary>
+    public void Initialize(D_It_StatusData itemData, BlacksmithManager manager, ItemUI sourceItemUI, UnityAction action)
+    {
+        blacksmithManager = manager;                  //鍛冶マネージャーを取得
+        this.sourceItemUI = sourceItemUI;
+
+        ItemData = itemData;                          //鍛造などで参照出来るように。
+
+        itemImage.sprite = itemData.DataIcon;         // UIに画面を入れる
+        SetRarityColor(itemData.SeeRarity);           // UIのレア度ごとの色設定
+
+        //このボタンの処理設定
+        button.onClick.RemoveAllListeners();
+        button.onClick.AddListener(action);
+    }
+
+    /// <summary>
+    /// 装備UIの初期化処理
+    /// </summary>
+    public void Initialize(D_Eq_StatusData itemData, BlacksmithManager manager, ItemUI sourceItemUI, UnityAction action)
+    {
+        blacksmithManager = manager;                  //鍛冶マネージャーを取得
+        this.sourceItemUI = sourceItemUI;
+
+        itemImage.sprite = itemData.DataIcon;         // UIに画面を入れる
+        SetRarityColor(itemData.SeeRarity);           // UIのレア度ごとの色設定
+
+        //このボタンの処理設定
+        button.onClick.RemoveAllListeners();
+        button.onClick.AddListener(action);
+    }
+
+    /// <summary>
+    /// 所持数表示
+    /// </summary>
+    public void SetNumber(int number)
+    {
+        numberText.text = number.ToString();
+    }
+
+    /// <summary>
+    /// 所持数を表示しない
+    /// </summary>
+    public void HideNumber()
+    {
+        numberText.text = "";
+    }
+
+    /// <summary>
+    /// 鍛冶に使用するアイテム選択処理の呼び出し
+    /// </summary>
+    public void SelectItem(D_It_StatusData itemData, GameObject uiObj)
+    {
+        if (itemData.Number > 0)
+        {
+            if (blacksmithManager != null)
+            {
+                blacksmithManager.SelectMaterial(itemData, uiObj, this);
+            }
+        }
+        
+        Debug.Log(itemData.Name);
+    }
+
+    public void CancelItem(D_It_StatusData itemData, GameObject Material)
+    {
+        if (blacksmithManager != null)
+        {
+            blacksmithManager.CancelMaterial(itemData, Material, sourceItemUI);
+        }
+    }
+
+    public void SelectItem(D_Eq_StatusData itemData)
+    {
+        Debug.Log(itemData.Name);
+    }
 
     /// <summary>
     /// アイテム画像の表示場所
     /// </summary>
-    public void SetIcon(Sprite sprite)
+    /*public void SetIcon(Sprite sprite)
     {
         itemImage.sprite = sprite;
+    }
+
+    /// <summary>
+    /// アイテムの所持数表示
+    /// </summary>
+    public void ItemNumber(int number) 
+    { 
+        numberText.text = number.ToString();
     }
 
     /// <summary>
@@ -22,7 +124,7 @@ public class ItemUI : MonoBehaviour
     {
         itemImage.sprite = sprite;
         SetRarityColor(rarity);
-    }
+    }*/
 
     /// <summary>
     /// レア度ごとの色設定（処理部分）
