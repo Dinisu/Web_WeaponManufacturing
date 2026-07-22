@@ -8,7 +8,11 @@ namespace App.BaseSystem.DataStores.ScriptableObjects.Status
     [CreateAssetMenu(menuName = "ScriptableObject/Data/EquipmentStatus")]
     public class D_Eq_StatusData : BaseData
     {
-        public Rarity SeeRarity => rarity;
+        public Rarity SeeRarity
+        {
+            get => rarity;
+            set => rarity = value;
+        }
         [SerializeField, Header("ƒŒƒA“x")]
         private Rarity rarity;
 

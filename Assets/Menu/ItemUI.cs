@@ -88,6 +88,9 @@ public class ItemUI : MonoBehaviour
         Debug.Log(itemData.Name);
     }
 
+    /// <summary>
+    /// アイテム選択のキャンセル処理の呼び出し
+    /// </summary>
     public void CancelItem(D_It_StatusData itemData, GameObject Material)
     {
         if (blacksmithManager != null)

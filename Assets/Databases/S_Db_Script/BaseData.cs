@@ -15,7 +15,11 @@ namespace App.BaseSystem.DataStores.ScriptableObjects
         }
         [SerializeField]
         private new string name;
-        public int Id => id;
+        public int Id
+        {
+            get => id;
+            set => id = value;
+        }
         [SerializeField]
         private int id;
 

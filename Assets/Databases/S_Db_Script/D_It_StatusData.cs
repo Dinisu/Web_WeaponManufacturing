@@ -11,7 +11,11 @@ namespace App.BaseSystem.DataStores.ScriptableObjects.Status
         [TextArea, Header("効果説明")]
         public string EfficacyItemDescription;
 
-        public Rarity SeeRarity => rarity;
+        public Rarity SeeRarity
+        {
+            get => rarity;
+            set => rarity = value;
+        }
         [SerializeField, Header("レア度")]
         private Rarity rarity;
 
@@ -83,7 +87,7 @@ namespace App.BaseSystem.DataStores.ScriptableObjects.Status
             public int MaxMpup;
             public int Attackup;
             public int Magicup;
-            public int Defenceup;
+            public int Defenseup;
             public int MagicDefenseup;
             public int Speedup;
             public int Criticalup;

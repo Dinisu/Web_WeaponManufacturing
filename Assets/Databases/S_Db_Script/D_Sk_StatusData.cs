@@ -11,7 +11,11 @@ namespace App.BaseSystem.DataStores.ScriptableObjects.Status
         [TextArea, Header("Œø‰Êà–¾")]
         public string EfficacyItemDescription;
 
-        public Rarity SeeRarity => rarity;
+        public Rarity SeeRarity
+        {
+            get => rarity;
+            set => rarity = value;
+        }
         [SerializeField, Header("ƒŒƒA“x")]
         private Rarity rarity;
 
